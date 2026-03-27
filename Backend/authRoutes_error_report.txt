@@ -1,0 +1,22 @@
+---
+
+## ERROR REPORT
+
+File Name: routes/authRoutes.js (and controller/authController.js)
+Line Number: 3
+Error Type: SyntaxError / Import-Export Mismatch
+Reason of the Error: In ES modules, `authController.js` is using a default export (`export default { ... }`), but `authRoutes.js` is trying to import them as named exports using curly braces (`import { register, login, getMe }`). You cannot destructure a default export directly in the import statement.
+
+What Should Be Changed:
+You should change how `authController.js` exports the functions so it matches the named import used in your routes file.
+
+Incorrect Code (in controller/authController.js):
+export default { register, login, getMe }
+
+Correct Code (in controller/authController.js):
+export { register, login, getMe }
+
+Explanation:
+By removing the `default` keyword, you switch from a "default export" to "named exports", which exactly correctly matches the `import { register, login, getMe }` syntax you are already using in `authRoutes.js`.
+
+---

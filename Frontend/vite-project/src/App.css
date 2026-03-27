@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+/* Product Card Enhancements */
+.product-card {
+    transition: all 0.3s ease;
+    border-radius: 16px;
+    background: #ffffff;
+    border: none !important;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.product-card .img-container {
+    height: 250px; /* Fixed height (around h-64) */
+    background-color: #f3f4f6; /* bg-gray-100 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-card .product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.1);
+}
+
+.product-card .card-body {
+    padding: 1rem !important;
+}
+
+.product-card .product-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-card .product-category {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.product-card .product-price {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #0f172a;
+}
+
+.product-card .add-btn {
+    border-radius: 50px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.product-card .add-btn:hover {
+    background-color: #000;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.btn {
+    transition: all 0.3s ease !important;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Landing Page Utilities */
+.hover-up {
+    transition: all 0.3s ease;
+}
+.hover-up:hover {
+    transform: translateY(-10px);
+}
+
+.transition-all {
+    transition: all 0.3s ease !important;
+}
+
+.transition-5 {
+    transition: all 0.5s ease-in-out !important;
+}
+
+.group:hover .group-hover-scale {
+    transform: scale(1.1);
+}
+
+.group:hover .group-hover-opacity-100 {
+    opacity: 1 !important;
+}
+
+.fw-black {
+    font-weight: 900;
+}
+
+.tracking-wider {
+    letter-spacing: 0.1em;
+}
+
+.tracking-widest {
+    letter-spacing: 0.2em;
+}
+
+.bg-light-soft {
+    background-color: #f8fafc;
+}
+
+.bg-gradient-dark-transparent {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.vh-75 {
+    height: 75vh;
+}
+
+.shadow-xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.opacity-85 { opacity: 0.85; }
+.opacity-90 { opacity: 0.9; }
+
+.hover-grow:hover {
+    transform: scale(1.05);
+}
+
+/* Navbar Enhancements */
+.navbar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #212529;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+.sticky-top {
+    transition: all 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}

@@ -1,0 +1,147 @@
+# POSTMAN API TESTING GUIDE - E-COMMERCE BACKEND
+
+This guide will walk you through how to test your MERN backend APIs step-by-step using Postman.
+
+---
+## PREREQUISITES
+1. Make sure your server is running (e.g., `npm start` or `node server.js`).
+2. The server should be running on `http://localhost:5000` (or whatever port you configured).
+3. Open the Postman application.
+
+---
+## STEP 1: TEST AUTHENTICATION APIS
+
+### 1. Register a New User
+- Method: POST
+- URL: http://localhost:5000/auth/register
+- Steps:
+  1. Select `POST` from the method dropdown.
+  2. Enter the URL: `http://localhost:5000/auth/register`
+  3. Go to the **Body** tab.
+  4. Select **raw** and choose **JSON** from the dropdown menu to the right.
+  5. Paste the following JSON:
+     {
+       "name": "Test User",
+       "email": "testuser@gmail.com",
+       "password": "password123"
+     }
+  6. Click **Send**.
+  7. Check the response. You should get a 201 Created response with a token.
+
+### 2. Login User
+- Method: POST
+- URL: http://localhost:5000/auth/login
+- Steps:
+  1. Select `POST` and enter URL: `http://localhost:5000/auth/login`
+  2. Go to the **Body** tab -> **raw** -> **JSON**.
+  3. Paste the following JSON:
+     {
+       "email": "testuser@gmail.com",
+       "password": "password123"
+     }
+  4. Click **Send**.
+  5. **IMPORTANT:** Copy the `token` string from the response. You will need it for protected routes!
+
+### 3. Get Logged In User Info (Protected Route)
+- Method: POST
+- URL: http://localhost:5000/auth/me
+- Steps:
+  1. Select `POST` and enter URL: `http://localhost:5000/auth/me`
+  2. Go to the **Headers** tab.
+  3. Under `Key`, type `Authorization`.
+  4. Under `Value`, paste the token you copied from the Login step.
+  5. Click **Send**. You should see the user info.
+
+---
+## STEP 2: TEST PRODUCT APIS
+
+### 1. Get All Products
+- Method: GET
+- URL: http://localhost:5000/product/
+- Steps:
+  1. Select `GET` and enter URL: `http://localhost:5000/product/`
+  2. Click **Send**. You may get an empty array if there are no products yet.
+
+### 2. Create a Product (Admin Only, Protected Route)
+- Method: POST
+- URL: http://localhost:5000/product/
+- Steps:
+  1. Select `POST` and enter URL: `http://localhost:5000/product/`
+  2. First, you must login as an Admin (ahamed@gamil.com or hathin@gmail.com) and get the Admin token.
+  3. Go to the **Headers** tab. Key: `Authorization`, Value: `<Admin_Token_Here>`.
+  4. Go to the **Body** tab -> **raw** -> **JSON**.
+  5. Paste the following JSON:
+     {
+       "name": "Test Product",
+       "price": 99.99,
+       "description": "This is a great product",
+       "image": "image_url_here.jpg"
+     }
+  6. Click **Send**. 
+  7. Copy the `_id` of the created product for the next steps.
+
+### 3. Get Single Product
+- Method: GET
+- URL: http://localhost:5000/product/<PRODUCT_ID>
+- Steps: Replace `<PRODUCT_ID>` with the actual ID from the previous step and click **Send**.
+
+---
+## STEP 3: TEST CART APIS
+
+### 1. Add Product to Cart (Protected Route)
+- Method: POST
+- URL: http://localhost:5000/cart/add
+- Steps:
+  1. Select `POST` and enter URL: `http://localhost:5000/cart/add`
+  2. Go to **Headers** -> Key: `Authorization`, Value: `<Your_User_Token>`.
+  3. Go to **Body** -> **raw** -> **JSON**.
+  4. Paste the JSON:
+     {
+       "productId": "<PRODUCT_ID>",
+       "quantity": 1
+     }
+  5. Click **Send**.
+
+### 2. Get Cart (Protected Route)
+- Method: GET
+- URL: http://localhost:5000/cart/
+- Steps:
+  1. Select `GET` and enter URL: `http://localhost:5000/cart/`
+  2. Go to **Headers** -> Key: `Authorization`, Value: `<Your_User_Token>`.
+  3. Click **Send**.
+
+### 3. Update Cart Item (Protected Route)
+- Method: POST
+- URL: http://localhost:5000/cart/update/<PRODUCT_ID>
+- Steps:
+  1. Select `POST` and enter URL: `http://localhost:5000/cart/update/<PRODUCT_ID>`
+  2. Go to **Headers** -> Key: `Authorization`, Value: `<Your_User_Token>`.
+  3. Go to **Body** -> **raw** -> **JSON**.
+  4. Paste the JSON:
+     {
+       "productId": "<PRODUCT_ID>",
+       "quantity": 3
+     }
+  5. Click **Send**.
+
+### 4. Remove Item from Cart (Protected Route)
+- Method: DELETE
+- URL: http://localhost:5000/cart/remove/<PRODUCT_ID>
+- Steps:
+  1. Select `DELETE` and enter URL: `http://localhost:5000/cart/remove/<PRODUCT_ID>`
+  2. Go to **Headers** -> Key: `Authorization`, Value: `<Your_User_Token>`.
+  3. Click **Send**.
+
+### 5. Clear Cart (Protected Route)
+- Method: DELETE
+- URL: http://localhost:5000/cart/clear
+- Steps:
+  1. Select `DELETE` and enter URL: `http://localhost:5000/cart/clear`
+  2. Go to **Headers** -> Key: `Authorization`, Value: `<Your_User_Token>`.
+  3. Click **Send**.
+
+---
+## PRO TIP: SAVING TIME IN POSTMAN
+1. **Create a Collection:** Click "New" -> "Collection" on the left sidebar and name it "E-Commerce API".
+2. **Save Requests:** After setting up a request (like Login), click the "Save" button and put it in your collection.
+3. **Environment Variables:** Instead of copying/pasting the token every time, create an Environment variable called `jwt_token`. Then in your Login request's "Tests" tab, you can write script to auto-save it, and use `{{jwt_token}}` in your headers.
