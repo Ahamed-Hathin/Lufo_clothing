@@ -18,7 +18,7 @@ import Contact from './component/Contact';
 import Wishlist from './component/Wishlist';
 import OrderHistory from './component/OrderHistory';
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://lufo-clothing.onrender.com';
 
 axios.interceptors.request.use(
   (config) => {
@@ -54,7 +54,7 @@ const App = () => {
           <Link className="navbar-brand fw-bold fs-3" to="/" style={{ letterSpacing: '-1.5px' }}>
             LUFO<span className="text-warning">.</span>
           </Link>
-          
+
           <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -70,29 +70,29 @@ const App = () => {
 
             <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">
               <div className="position-relative d-none d-md-block">
-                <input 
-                  className="form-control rounded-pill border-0 bg-light ps-4 pe-5" 
-                  type="search" 
-                  placeholder="Search..." 
+                <input
+                  className="form-control rounded-pill border-0 bg-light ps-4 pe-5"
+                  type="search"
+                  placeholder="Search..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   style={{ width: '200px' }}
                 />
                 <i className="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3 text-muted"></i>
               </div>
-              
+
               <Link className="text-dark position-relative" to="/wishlist">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-heart" viewBox="0 0 16 16"><path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-heart" viewBox="0 0 16 16"><path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" /></svg>
               </Link>
 
               <Link className="text-dark position-relative" to="/cart">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-bag" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v2H6V3a2 2 0 0 1 2-2zm3 4V3a3 3 0 1 0-6 0v2H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3zM2 6h12v6H2V6z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-bag" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v2H6V3a2 2 0 0 1 2-2zm3 4V3a3 3 0 1 0-6 0v2H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3zM2 6h12v6H2V6z" /></svg>
               </Link>
 
               {user ? (
                 <div className="dropdown">
                   <button className="btn btn-link text-dark p-0 dropdown-toggle no-caret" type="button" data-bs-toggle="dropdown">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" /></svg>
                   </button>
                   <ul className="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2 p-2">
                     <li><h6 className="dropdown-header">Hi, {user.name}</h6></li>
@@ -147,7 +147,7 @@ const App = () => {
             </div>
             <div className="col-md-4 mb-3">
               <h5 className="text-uppercase fw-bold">Contact Info</h5>
-              <p>Email: support@lufoclothing.com<br/>Phone: 8270223203</p>
+              <p>Email: support@lufoclothing.com<br />Phone: 8270223203</p>
             </div>
           </div>
         </div>
